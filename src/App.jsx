@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
 
+
+
+
+
 async function api(path, options = {}) {
-  
+
   const requestOptions = { credentials: 'include', ...options }
 
   if (requestOptions.body && !(requestOptions.body instanceof FormData) && typeof requestOptions.body !== 'string') {
