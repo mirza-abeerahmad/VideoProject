@@ -1,9 +1,15 @@
 import axios from 'axios'
 
+const configuredBaseUrl = import.meta.env.VITE_API_URL || (import.meta.env.DEV
+  ? 'http://localhost:3000/api/v1'
+  : 'https://streamlybackend-nu.vercel.app/api/v1')
+const normalizedBaseUrl = configuredBaseUrl.replace(/\/+$/, '')
+const apiBaseUrl = normalizedBaseUrl.endsWith('/api/v1')
+  ? normalizedBaseUrl
+  : `${normalizedBaseUrl}/api/v1`
+
 const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || (import.meta.env.DEV
-    ? 'http://localhost:3000/api/v1'
-    : 'https://streamlybackend-nu.vercel.app/api/v1'),
+  baseURL: apiBaseUrl,
   withCredentials: true,
 })
 
